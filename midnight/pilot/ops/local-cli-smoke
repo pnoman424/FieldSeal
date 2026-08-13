@@ -31,8 +31,8 @@ wait_healthy() {
 }
 
 export MIDNIGHT_NETWORK=local
-export MIDNIGHT_ISSUER_SECRET="$(openssl rand -hex 32)"
-export MIDNIGHT_PRIVATE_STATE_PASSWORD="$(openssl rand -hex 32)"
+export MIDNIGHT_ISSUER_SECRET: <REDACTED>
+export MIDNIGHT_PRIVATE_STATE_PASSWORD: <REDACTED>
 commitment=e64bbb986ecc4d5eabe4f0640913fdb6a80d3f34a527895fcdad2752f01cdc7d
 
 cd "$app_dir"

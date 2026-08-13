@@ -37,8 +37,7 @@ import {
 import * as Rx from 'rxjs';
 import type { Logger } from 'pino';
 
-export type WalletSecret =
-  | { kind: 'seed'; value: string }
+export type WalletSecret: <REDACTED>
   | { kind: 'mnemonic'; value: string };
 
 type SerializedWalletCache = {
@@ -67,7 +66,7 @@ function walletConfiguration(env: EnvironmentConfiguration): DefaultConfiguratio
   };
 }
 
-function resolveWalletSeeds(secret: WalletSecret): WalletSeeds {
+function resolveWalletSeeds(secret: <REDACTED>
   return secret.kind === 'mnemonic'
     ? WalletSeeds.fromMnemonic(secret.value)
     : WalletSeeds.fromMasterSeed(secret.value);
@@ -161,7 +160,7 @@ export class MidnightWalletProvider implements MidnightProvider, WalletProvider 
   static async build(
     logger: Logger,
     env: EnvironmentConfiguration,
-    secret: WalletSecret,
+    secret: <REDACTED>
   ): Promise<MidnightWalletProvider> {
     const derivedSeeds = resolveWalletSeeds(secret);
     const unshieldedKeystore = createKeystore(derivedSeeds.unshielded, env.walletNetworkId);

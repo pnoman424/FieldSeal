@@ -8,7 +8,7 @@ FieldSeal turns completed field work into a private, controlled report whose exa
 - [Implementation map and verified baseline](docs/fieldseal-hackathon-implementation-map.md)
 - [Midnight receipt pilot](midnight/README.md)
 
-FieldSeal began as an adaptation of [`Kfagermo/esense`](https://github.com/Kfagermo/esense), but it now has an independent repository and delivery line for the US hackathon product. FieldSeal changes belong here; Norwegian esense changes belong in the esense repository.
+FieldSeal is adapted from the upstream [`Kfagermo/esense`](https://github.com/Kfagermo/esense) project. This fork preserves the original workflow and Midnight preprod pilot while adapting the product identity, terminology, and synthetic demonstration for the US market.
 
 This repository is a public hackathon snapshot. It contains synthetic demonstration content only. Runtime databases, uploaded documents, credentials, private state, and generated contract artifacts are intentionally excluded.
 
@@ -54,18 +54,6 @@ python3 -m venv .venv
 ```
 
 The smoke workflow covers the provider, worker, reviewer, recipient, package, Midnight receipt, verification, access-revocation, and package-revocation lifecycle.
-
-On Windows, use `.venv\Scripts\python.exe` in place of `.venv/bin/python`.
-
-## Team workflow
-
-1. Fork [`Kfagermo/fieldseal`](https://github.com/Kfagermo/fieldseal).
-2. Create a focused branch such as `feature/mobile-evidence` or `fix/reviewer-navigation`.
-3. Open the pull request against `Kfagermo/fieldseal:main`.
-4. Keep runtime data, credentials, customer information, and generated contract state out of commits.
-5. Run the syntax checks and `workflow_smoke.py` before requesting review.
-
-`main` is protected. Pull requests require review, resolved conversations, and the repository validation workflow. See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete contribution boundary.
 
 ## Local visual QA
 

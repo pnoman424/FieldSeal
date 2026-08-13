@@ -62,9 +62,7 @@ sudo esense-midnight-pilot /opt/esense-midnight/app/src/pilot-cli.ts wallet-info
 Production remains disabled until the Preprod wallet is funded and a contract
 deployment has returned a confirmed 64-hex contract address. Activation is a
 root-only operation so the web application never receives the wallet seed or
-issuer secret:
-
-```bash
+issuer secret: <REDACTED>
 sudo configure-esense-midnight-preprod <64-hex-contract-address>
 ```
 

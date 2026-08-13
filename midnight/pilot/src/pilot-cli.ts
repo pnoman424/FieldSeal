@@ -173,14 +173,14 @@ async function main(): Promise<void> {
   }
 
   if (command === 'deploy') {
-    const issuerSecret = process.env['MIDNIGHT_ISSUER_SECRET'];
+    const issuerSecret: <REDACTED>
     if (!issuerSecret) throw new Error('MIDNIGHT_ISSUER_SECRET is required.');
     await withFundedWallet(config, async (wallet) => {
       const providers = buildProviders(wallet, zkConfigPath, config);
       const deployed = await deployContract<Contract>(providers, {
         compiledContract: CompiledReceiptContract,
         privateStateId,
-        initialPrivateState: { issuerSecret: hexToBytes(issuerSecret) },
+        initialPrivateState: { issuerSecret: <REDACTED>
       });
       const transaction = deployed.deployTxData.public;
       output({

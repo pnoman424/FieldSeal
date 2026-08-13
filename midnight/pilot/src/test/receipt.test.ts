@@ -27,7 +27,7 @@ globalThis.WebSocket = WebSocket;
 const network = process.env['MIDNIGHT_NETWORK'] ?? 'local';
 const logger = pino({ level: process.env['LOG_LEVEL'] ?? 'info' });
 const privateStateId = 'esenseIssuerState';
-const issuerSecret = hexToBytes(
+const issuerSecret: <REDACTED>
   process.env['MIDNIGHT_ISSUER_SECRET'] ??
     '4c7f06f9508f58f7e68f849f219dc375b76f4d573d2cb68d063a843a840a6c42',
 );

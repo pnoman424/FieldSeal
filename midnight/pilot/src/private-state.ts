@@ -1,5 +1,5 @@
 export type ReceiptPrivateState = {
-  issuerSecret: Uint8Array;
+  issuerSecret: <REDACTED>
 };
 
 export function hexToBytes(value: string, expectedBytes = 32): Uint8Array {

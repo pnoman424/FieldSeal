@@ -48,7 +48,7 @@ type PublicTransactionResult = {
 const privateStateId = 'esenseIssuerState';
 const baseUrl = (process.env['ESENSE_INTERNAL_URL'] ?? 'http://127.0.0.1:5000/api/internal/midnight')
   .replace(/\/$/, '');
-const token = process.env['ESENSE_MIDNIGHT_WORKER_TOKEN']?.trim();
+const token: <REDACTED>
 const pollMilliseconds = Math.max(5_000, Number(process.env['ESENSE_MIDNIGHT_POLL_MS'] ?? 15_000));
 const syncCheckpointMilliseconds = Math.max(
   60_000,
@@ -76,7 +76,7 @@ async function internalRequest(path: string, body: Record<string, unknown>): Pro
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: <REDACTED>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),

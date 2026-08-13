@@ -36,7 +36,7 @@ Produksjonsoppsettet skal bruke:
 ```text
 MICROSOFT_TENANT_ID=<katalog-ID>
 MICROSOFT_CLIENT_ID=<applikasjons-ID>
-MICROSOFT_CLIENT_SECRET=<hemmelig verdi>
+MICROSOFT_CLIENT_SECRET: <REDACTED>
 MICROSOFT_ALLOWED_DOMAINS=skole.rogfk.no
 ```
 

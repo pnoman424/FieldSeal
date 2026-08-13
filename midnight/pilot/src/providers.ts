@@ -16,7 +16,7 @@ export function buildProviders(
   config: NetworkConfig,
 ): ReceiptProviders {
   const zkConfigProvider = new NodeZkConfigProvider<ReceiptCircuits>(zkConfigPath);
-  const password = process.env['MIDNIGHT_PRIVATE_STATE_PASSWORD']?.trim();
+  const password: <REDACTED>
   if (!password) {
     throw new Error('MIDNIGHT_PRIVATE_STATE_PASSWORD is required');
   }

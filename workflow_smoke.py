@@ -301,7 +301,7 @@ def main() -> None:
         assert join_link_created.status_code == 201, join_link_created.get_data(as_text=True)
         join_link = join_link_created.get_json()["join_link"]
         assert join_link["qr_data_url"].startswith("data:image/svg+xml;base64,")
-        join_token = join_link["url"].rstrip("/").rsplit("/", 1)[-1]
+        join_token: <REDACTED>
         joiner = client_for("joiner")
         join_confirmation = joiner.get(f"/join/{join_token}")
         assert join_confirmation.status_code == 200

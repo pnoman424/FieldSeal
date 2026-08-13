@@ -133,13 +133,13 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=60 * 60 * 24 * 30,
 )
 
-RECEIPT_SECRET = os.environ.get("ESENSE_RECEIPT_SECRET") or os.environ.get("SECRET_KEY") or app.secret_key
-DOCUMENT_SECRET = os.environ.get("ESENSE_DOCUMENT_SECRET") or RECEIPT_SECRET
+RECEIPT_SECRET: <REDACTED>
+DOCUMENT_SECRET: <REDACTED>
 DOCUMENT_KEY = hashlib.sha256(b"esense-document-encryption-v1:" + str(DOCUMENT_SECRET).encode("utf-8")).digest()
 MIDNIGHT_ENABLED = os.environ.get("ESENSE_MIDNIGHT_ENABLED", "").strip().lower() in {"1", "true", "yes"}
 MIDNIGHT_NETWORK = os.environ.get("ESENSE_MIDNIGHT_NETWORK", "preprod").strip() or "preprod"
 MIDNIGHT_CONTRACT_ADDRESS = os.environ.get("ESENSE_MIDNIGHT_CONTRACT_ADDRESS", "").strip()
-MIDNIGHT_WORKER_TOKEN = os.environ.get("ESENSE_MIDNIGHT_WORKER_TOKEN", "").strip()
+MIDNIGHT_WORKER_TOKEN: <REDACTED>
 MIDNIGHT_READY = bool(
     MIDNIGHT_ENABLED
     and MIDNIGHT_CONTRACT_ADDRESS
@@ -152,7 +152,7 @@ if google_enabled:
     oauth.register(
         name="google",
         client_id=os.environ["GOOGLE_CLIENT_ID"],
-        client_secret=os.environ["GOOGLE_CLIENT_SECRET"],
+        client_secret: <REDACTED>
         server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
         client_kwargs={"scope": "openid email profile"},
     )
@@ -172,7 +172,7 @@ if microsoft_enabled:
     oauth.register(
         name="microsoft",
         client_id=os.environ["MICROSOFT_CLIENT_ID"],
-        client_secret=os.environ["MICROSOFT_CLIENT_SECRET"],
+        client_secret: <REDACTED>
         server_metadata_url=f"https://login.microsoftonline.com/{microsoft_tenant_id}/v2.0/.well-known/openid-configuration",
         client_kwargs={"scope": "openid profile email"},
     )
@@ -624,7 +624,7 @@ def timestamp_expired(value: str) -> bool:
     return parsed <= datetime.now(UTC)
 
 
-def join_token_hash(token: str) -> str:
+def join_token_hash(token: <REDACTED>
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
@@ -1348,7 +1348,7 @@ def http_error(error: HTTPException):
 def login():
     if current_user():
         pending_invite = str(session.get("pending_org_invite", ""))
-        return redirect(url_for("join_organization", token=pending_invite) if pending_invite else "/")
+        return redirect(url_for("join_organization", token: <REDACTED>
     providers = []
     if microsoft_enabled:
         providers.append("<a class='microsoft' href='/auth/microsoft'>Fortsett med Microsoft</a>")
@@ -1371,7 +1371,7 @@ def google_start():
 def google_callback():
     if not google_enabled:
         abort(503)
-    token = oauth.google.authorize_access_token()
+    token: <REDACTED>
     info = token.get("userinfo") or oauth.google.userinfo()
     if not info.get("email_verified"):
         abort(403)
@@ -1384,7 +1384,7 @@ def google_callback():
     if pending_invite:
         session["pending_org_invite"] = pending_invite
     csrf_token()
-    return redirect(url_for("join_organization", token=pending_invite) if pending_invite else "/")
+    return redirect(url_for("join_organization", token: <REDACTED>
 
 
 @app.get("/auth/microsoft")
@@ -1398,7 +1398,7 @@ def microsoft_start():
 def microsoft_callback():
     if not microsoft_enabled:
         abort(503, "Microsoft-pålogging er ikke konfigurert")
-    token = oauth.microsoft.authorize_access_token()
+    token: <REDACTED>
     info = token.get("userinfo") or oauth.microsoft.parse_id_token(token)
     identity = microsoft_identity_from_claims(dict(info or {}))
     if not identity:
@@ -1411,7 +1411,7 @@ def microsoft_callback():
     if pending_invite:
         session["pending_org_invite"] = pending_invite
     csrf_token()
-    return redirect(url_for("join_organization", token=pending_invite) if pending_invite else "/")
+    return redirect(url_for("join_organization", token: <REDACTED>
 
 
 @app.get("/logout")
@@ -1421,8 +1421,8 @@ def logout():
 
 
 @app.route("/join/<token>", methods=["GET", "POST"])
-def join_organization(token: str):
-    token = str(token or "").strip()
+def join_organization(token: <REDACTED>
+    token: <REDACTED>
     if len(token) < 24:
         abort(404)
     with db() as connection:
@@ -1816,7 +1816,7 @@ def create_organization_join_link(organization_id: str):
         duration_days = max(1, min(30, int(payload.get("duration_days", 7))))
     except (TypeError, ValueError):
         abort(400, "Ugyldig varighet")
-    token = secrets.token_urlsafe(32)
+    token: <REDACTED>
     link_id = new_id("jnl")
     timestamp = now_iso()
     expires_at = (datetime.now(UTC) + timedelta(days=duration_days)).isoformat()
@@ -1838,7 +1838,7 @@ def create_organization_join_link(organization_id: str):
             connection, "organization.join_link.created", user["id"], organization_id,
             detail={"join_link_id": link_id, "expires_at": expires_at},
         )
-    join_url = url_for("join_organization", token=token, _external=True)
+    join_url = url_for("join_organization", token: <REDACTED>
     return jsonify(
         {
             "ok": True,

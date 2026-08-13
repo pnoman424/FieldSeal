@@ -33,6 +33,6 @@ export circuit assertValidReceipt(receiptCommitment: Bytes<32>): [] {
     assert(!revokedReceipts.member(disclose(receiptCommitment)), "Receipt is revoked");
 }
 
-circuit issuerKey(secret: Bytes<32>): Bytes<32> {
+circuit issuerKey(secret: <REDACTED>
     return persistentHash<Vector<2, Bytes<32>>>([pad(32, "esense:issuer:"), secret]);
 }

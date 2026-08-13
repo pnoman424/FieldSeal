@@ -39,9 +39,9 @@ set_value() {
   mv "$temporary" "$file"
 }
 
-worker_token="$(sed -n 's/^ESENSE_MIDNIGHT_WORKER_TOKEN=//p' "$private_env" | tail -n 1)"
+worker_token: <REDACTED>
 if [ -z "$worker_token" ]; then
-  worker_token="$(openssl rand -hex 32)"
+  worker_token: <REDACTED>
 fi
 set_value "$private_env" MIDNIGHT_CONTRACT_ADDRESS "$contract_address" root root 0600
 set_value "$private_env" MIDNIGHT_PROOF_SERVER "http://127.0.0.1:6300" root root 0600
